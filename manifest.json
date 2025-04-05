@@ -1,0 +1,10 @@
+{
+  "name": "Alt Gen",
+  "description": "An extension to generate alt text for images",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "alt.png"
+  }
+}
