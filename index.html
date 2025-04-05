@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alt text generator</title>
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
+  </head>
   <body>
-    Hello world!
+    <h1 id="main-heading">Alt text generator</h1>
+
+    <form class="upload-container" action="/">
+      <img
+        id="image-container"
+        src="media/placeholder.png"
+        alt="A placeholder image"
+      />
+      <input
+        class="file-upload"
+        type="file"
+        name="uploaded_image"
+        accept="image/*"
+      />
+      <input
+        class="btn"
+        type="submit"
+        value="Generate Alt Text"
+        name="submit_button"
+      />
+    </form>
+
+    <div id="generated-alt-text">
+      <p></p>
+    </div>
   </body>
+  <script src="script.js"></script>
 </html>
