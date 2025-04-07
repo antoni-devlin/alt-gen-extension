@@ -7,38 +7,18 @@ const ENDPOINT = "https://api.openai.com/v1/responses";
 
 const systemPrompt = `You are an AI that generates alt text for images. Your task is to create a descriptive alt text for the given image. The alt text should be concise and accurately describe the content of the image.`;
 
-function toggleAltTextElement() {
-  if (altTextContainer.style.display === "none") {
-    altTextContainer.style.display = "block";
-  } else {
-    altTextContainer.style.display = "none";
-  }
-}
-
 image_input.addEventListener("change", (event) => {
   if (event.target.files && event.target.files.length > 0) {
     imagePreview.src = URL.createObjectURL(event.target.files[0]);
   }
 });
 
-uploadForm.addEventListener("submit", (event) => {
-  console.log("Form submitted");
-  fetch("https://n8n.devlinlabs.space/webhook/test-hook", {
-    method: "POST",
-    body: new FormData(uploadForm),
-  })
-    .then((response) => {
-      if (response.ok) {
-        console.log(response);
-      } else {
-        console.error("Error:", response.statusText);
-      }
-    })
-    .catch((error) => {
-      console.error("Fetch error:", error);
-    });
+uploadForm.addEventListener("submit", async (event) => {
   // Prevent the default form submission
   event.preventDefault();
+  console.log("Form submitted");
+  await fetchCompletions(apiKey);
+  altTextContainer.style.display = "block";
 });
 
 async function convertImageToBase64(imageElement) {
@@ -58,10 +38,6 @@ async function convertImageToBase64(imageElement) {
     console.log(error("Error converting image to base64:", error));
   }
 }
-
-testButton.addEventListener("click", async () => {
-  await fetchCompletions(apiKey);
-});
 
 async function fetchCompletions(apiKey) {
   try {
@@ -95,6 +71,7 @@ async function fetchCompletions(apiKey) {
     const data = await response.json();
     const altText = data["output"][0]["content"][0]["text"];
     console.log(altText);
+    altTextContainer.getElementsByTagName("p")[0].innerText = altText;
     return response;
   } catch (error) {
     console.log("There was an error fetching completions", error);
