@@ -5,19 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alt text generator</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="media/alt.png" type="image/x-icon" />
     <style></style>
   </head>
   <body>
     <h1 id="main-heading">Alt text generator</h1>
 
-    <form class="upload-container" action="/">
+    <form
+      class="upload-container"
+      id="upload-form"
+      action="/"
+      method="POST"
+      enctype="multipart/form-data"
+    >
       <img
         id="image-container"
         src="media/placeholder.png"
         alt="A placeholder image"
       />
       <input
-        class="file-upload"
+        id="file-upload"
         type="file"
         name="uploaded_image"
         accept="image/*"
@@ -29,6 +36,13 @@
         name="submit_button"
       />
     </form>
+    <input
+      class="btn"
+      id="test-button"
+      type="submit"
+      value="Test button"
+      name="test-button"
+    />
 
     <div id="generated-alt-text">
       <p></p>
