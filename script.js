@@ -7,11 +7,19 @@ const ENDPOINT = "https://api.openai.com/v1/responses";
 
 const systemPrompt = `You are an AI that generates alt text for images. Your task is to create a descriptive alt text for the given image. The alt text should be concise and accurately describe the content of the image.`;
 
-const apiKey = "API-KEY-HERE";
+const apiKey = "PLACEHOLDER";
 
 image_input.addEventListener("change", (event) => {
   if (event.target.files && event.target.files.length > 0) {
     imagePreview.src = URL.createObjectURL(event.target.files[0]);
+  }
+});
+
+document.querySelector("#go-to-options").addEventListener("click", function () {
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage();
+  } else {
+    window.open(chrome.runtime.getURL("options.html"));
   }
 });
 
