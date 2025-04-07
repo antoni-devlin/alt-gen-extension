@@ -7,6 +7,8 @@ const ENDPOINT = "https://api.openai.com/v1/responses";
 
 const systemPrompt = `You are an AI that generates alt text for images. Your task is to create a descriptive alt text for the given image. The alt text should be concise and accurately describe the content of the image.`;
 
+const apiKey = "API-KEY-HERE";
+
 image_input.addEventListener("change", (event) => {
   if (event.target.files && event.target.files.length > 0) {
     imagePreview.src = URL.createObjectURL(event.target.files[0]);
